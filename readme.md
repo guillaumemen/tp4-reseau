@@ -62,7 +62,7 @@ ping server1.tp4
 
 ##### 4.
 - J'effectue la commande vue ci-dessus pour afficher la table ARP.
-- Pour transmettre la requete ping de notre client elle passe d'abord par le routeur pour etre envoyer ensuite au serveur 
+- Pour transmettre la requete ping de notre client elle passe d'abord par le router pour etre envoyer ensuite au serveur 
 
 #### C. Manip 3
 ##### 1.
@@ -85,4 +85,23 @@ sudo ip neigh flush all
 - Pour activer la carte NAT :
     - J'éteind la machine client1
     - Dans configurations puis dans réseau, je crée une nouvelle carte en NAT.
-    - Je rallum
+    - Je rallume
+
+### 2. Wireshark:
+  #### A. Interception d'ARP et ping
+
+#### 1. Router
+
+ - Lancement de l'enregistrement du trafic avec Wireshark, trafic a enregistrer dans un fichier ping.pcap:
+     - sudo tcpdump -i enp0s9 -w ping.pcap
+
+
+#### 2. Client
+-Vider la table ARP: sudo ip neigh flush all
+-Envoi des 4 pings au server
+
+#### 3. Router
+
+-Quitter la capture (CTRL + C)
+-Je verifie que le fichier ping.pcap soit bien present avec la commande ls 
+-Envoi du fichier ping.pcap sur l'hôte
